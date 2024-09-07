@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+<div class="row">
+    <div class="column">
+        <a class="download" href="/static/CV_LEVIS_Florian_Developpeur.pdf" title="Télécharger mon CV"><i
+                class="fa-solid fa-file-pdf"></i></a>
+        <pre id="cv">
+            <code class="language-latex">\documentclass[11pt,a4paper]{moderncv}
+\moderncvtheme[black]{classic}
+\usepackage[scale=0.8, top=1cm, bottom=1cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+
+\usepackage{graphicx}
+\usepackage[scaled]{helvet}
+% Help for calculating age
+\usepackage{xifthen}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Only if the base font of the document is to be sans serif
+\renewcommand*\familydefault{\sfdefault}
+% Don't print page numbers
+\nopagenumbers{}
+% Title columns
+\setlength{\hintscolumnwidth}{3cm}
+\AtBeginDocument{\recomputelengths}
+
+\definecolor{roseSG}{RGB}{185,61,135}
+\providecommand{\smartandgeek}{Smart\textcolor{roseSG}{\&}Geek}
+
+% Age calculation
+\newcounter{dobyear}\setcounter{dobyear}{1989}
+\newcounter{dobmonth}\setcounter{dobmonth}{12}
+\newcounter{dobday}\setcounter{dobday}{19}
+\newcounter{age}\setcounter{age}{\the\year - \thedobyear}
+%this compares your’s birth year to the current year and stores the value in a new counter
+\newtest{\conditiona}{%
+\cnttest{\the\month}{=}{\thedobmonth} \AND %
+\cnttest{\the\day}{>=}{\thedobday}%
+}
+%this sets the condition “if the current month is the same as your birth month and the current day is greater or equal than your birth day
+\newtest{\conditionb}{%
+\cnttest{\the\month}{>}{\thedobmonth}%
+}
+%this sets the condition: “if we the current month is after your birth month“
+\ifthenelse{\conditiona \OR \conditionb}{}{\addtocounter{age}{-1}}
+%this adjusts your age if one of the two conditions above is true, i.e. current time is later than your birthday of this year.
+% /Age calculation
+
+\renewcommand*{\quotefont}{\small\slshape}
+
+\firstname{Florian}
+\familyname{Levis}
+\title{Développeur, avec un l et deux p}
+\address{}{95170 Deuil-la-Barre, France}
+\mobile{+33 6 84 94 25 85}
+\email{levis.florian@gmail.com}
+\extrainfo{\theage{} ans, permis B, véhiculé\\mais en métro ou à pieds c'est mieux}
+\homepage{https://levisflorian.name}
+\social[github][https://github.com/Gounlaf]{github.com/Gounlaf}
+\social[linkedin][https://www.linkedin.com/in/gounlaf/]{linkedin.com/in/gounlaf}
+\photo[64pt]{photo.jpg}
+\quote{$\pi\ \%\ 1337\ =\ 42$}
+
+\begin{document}
+\maketitle
+
+\section{Expérience professionnelle}
+
+\cventry{2018--Maintenant}{Développeur back-end}{\href{https://alphanetworks.tv/}{Alphanetworks}}{Paris 75001}{CDI}{
+    \begin{itemize}
+        \item Responsabilités :
+        \begin{itemize}
+            \item Encadrement d'une apprentie
+            \item Encadrement d'une junior (reconversion professionnelle)
+            \item Lead technique sur \emph{Accurate EPG} et \emph{ENR}
+        \end{itemize}
+        \item Accurate EPG - Plateforme de correction EPG en live, utilisée principalement par des opérateurs télécoms :
+        \begin{itemize}
+            \item backend en microservices :
+            \begin{itemize}
+                \item APIs internes en REST et en gRPC (Kotlin, PHP, SQL, RabbitMQ, Gradle)
+                \item processing live de +/- 40 chaînes de télévision (FFmpeg, C\#, Python/ML, RabbitMQ)
+                \item tests unitaires et tests d'intégration (phpunit, junit, mockito)
+                \item metrics pour le suivi en production (prometheus, micrometer, Grafana)
+                \item conteneurisation et déploiements via charts helm (Docker/Kubernetes)
+            \end{itemize}
+            \item maintenance du front-end utilisé en continu (365j/365, 7j/7, 24h/24) par les équipes de production (Reactjs, conteneurisation)
+            \item développement de \emph{Proof of Concepts}
+            \item développement d'outils internes pour la R\&D (timelines EPG, visualisation de \emph{fingerprints})
+            \item mise en place et maintenance de l'intégration continue (Gitlab CI)
+        \end{itemize}
+        \item ENR - Enrichissement vidéo :
+        \begin{itemize}
+            \item détection intro/outro (Kotlin, FFmpeg, C\#)
+            \item sélection automatique de scènes pour illustrer une vidéo (Kotlin, Python, SQL)
+            \item développement de Proof of Concepts
+            \item librairies internes (publication sur le repository du Gitlab)
+            \item mise en place et maintenance de l'intégration continue (Gitlab CI)
+            \item conteneurisation (Docker/Kubernetes)
+        \end{itemize}
+        \item \href{https://www.alphanetworks.tv/en/products/tucano/overview}{Tucano - Le logiciel vidéo modulaire} (Java / Spring Boot 3, SQL, Docker/Kubernetes) :
+        \begin{itemize}
+              \item développement de nouvelles fonctionnalités (intégration de Stripe Checkout)
+              \item correction de bugs
+        \end{itemize}
+    \end{itemize}
+}
+
+\cventry{2022--2023}{Maître d'apprentissage}{\href{https://alphanetworks.tv/}{Alphanetworks}}{Paris 75001}{}{Maître d'apprentissage de \href{https://www.linkedin.com/in/linda-sadaoui/}{Linda S.} sur la formation "Développeur Web" d'OpenClassrooms}
+
+\cventry{2021--2023}{Mentor}{\href{https://openclassrooms.com/}{OpenClassrooms}}{Distanciel}{}{Mentorat d'étudiants sur la formation "Développeur PHP/Symfony" d'OpenClassrooms}
+
+\cventry{2019--2023}{Jury Professionnel}{DIRECCTE / Ministère du Travail}{}{}{Jury professionnel pour le Titre Professionnel Développeur Web \& Web Mobile (\mbox{TP-01280m03})}
+
+\cventry{2016--2018}{Développeur Android}{Mobile Media Com}{Paris 75001}{CDI}{Développement d'applications de \emph{streaming vidéo} (similaires à YouTube) sous Android compatibles téléphone, tablettes et télé (Android TV) : \href{https://www.playzer.fr}{Playzer}, Replay TV France
+    \begin{itemize}
+        \item première expérience professionnelle de développement sous Android
+        \item ré-écriture en Kotlin d'applications existantes en Java
+        \item intégration de l'ExoPlayer (via \href{https://github.com/brianwernick/ExoMedia}{ExoMedia})
+        \item intégration de solutions de paiement opérateur (sur BBox Miami)
+        \item intégration des designs
+    \end{itemize}
+}
+
+\cventry{2011--2016}{Développeur fullstack}{\smartandgeek}{Paris 75020}{Contrat d'apprentissage en Alternance (1 an) puis CDI}{
+    \begin{itemize}
+	    \item Développement d'applications web et mobiles, dont :
+        \begin{itemize}
+            \item JobAroundMe (PHP/Zend Framework 2)
+            \begin{itemize}
+                \item première expérience de \emph{lead developer} : équipe de 5 personnes auto-gérée en Roumanie
+                \item conception technique de la version web et des applications mobiles (Android/iOS),
+            \end{itemize}
+            \item Dynamic-Cover (PHP/Zend Framework 2, Fabric.js)
+            \begin{itemize}
+                \item service de création de \textit{covers} paramétrables sur pages Facebook (évènements à une date fixe, compte à rebours, nombre d'abonnés\ldots)
+            \end{itemize}
+            \item nombreux jeux concours pour pages Facebook de grandes marques (PHP/Framework maison, Vanilla JS)
+        \end{itemize}
+        \item Administration système :
+        \begin{itemize}
+            \item administration des serveurs (staging/production sur AWS, Ubuntu Server)
+            \item administration du système de versioning (Gitlab - self-hosted)
+        \end{itemize}
+    \end{itemize}
+}
+
+\cventry{2010--2011}{Développeur back-end/front-end}{3DS (Dassault Systèmes)}{Vélizy-Villacoublay 78140}{Contrat d'apprentissage en Alternance}{
+    Gestion du parc informatique (ecosystème Microsoft : C\#, SQL Server)
+    \begin{itemize}
+        \item nouvelle fonctionnalité notable : génération de PDFs à la volée pour la gestion des changement de matériel
+        \item correction de bugs
+    \end{itemize}
+}
+
+\cventry{2008--2010}{Développeur back-end/front-end}{\href{https://www.maecia.com}{Maecia}}{Paris 75002}{Contrat d'apprentissage en Alternance}{Développement de sites e-commerce et de communications (PHP (eZ Publish, Joomla!), SQL (MySQL/MariaDB), JavaScript (Mootools)}
+
+\section{Formation}
+
+\cventry{2010--2013}{Manager en Ingénierie Informatique (BAC+5)}{ITIN}{CCIV}{}{Options : Génie des Logiciels Embarqués (M1) / Jeux-vidéos (M2)}
+
+\cventry{2008--2010}{BTS Informatique de Gestion (BAC+2)}{ITIN}{CCIV}{}{Option : Développeur d'applications}
+
+\cventry{2007--2008}{1ère année Licence Science du Vivant}{Université Paris 7}{}{}{Objectif avorté : spécilisation en bioinformatique}
+
+\cventry{2007}{Baccalauréat Scientifique}{Lycée Charles Baudelaire}{95470 Fosses}{}{}
+
+\section{Compétences informatiques \& Langages de programmation}
+
+\cvitem{\textbf{Backend}}{Kotlin (Spring Boot 3, natif/cinterop, Android), Java (Spring Boot 3), gRPC, PHP (5-8 ; Symfony 3/4/5, Laravel), C\#, JavaScript/TypeScript (Node.js), C/C++}
+
+\cvitem{\textbf{Frontend}}{TypeScript, JavaScript (Reactjs, jQuery), HTML5 \& CSS3}
+
+\cvitem{\textbf{Base de données}}{PostgreSQL/MySQL/MariaDB (+ liquibase), SQL Server, SQLite (Android), Oracle (scolaire)}
+
+\cvitem{\textbf{Conteneurisation}}{Docker, Kubernetes (création et utilisations de \emph{charts helm})}
+
+\cvitem{\textbf{Opensource}}{\href{https://github.com/dlemstra/Magick.NET}{Magick.NET}, \href{https://github.com/Gounlaf/Magick.KT}{Magick.KT} (portage sur Kotlin de Magick.NET via cinterop)}
+
+\cvitem{\textbf{Environnement}}{\mbox{Ubuntu}, \mbox{JetBrains All Products Pack}, \mbox{macOS}}
+
+\cvitem{\textbf{Embarqué}}{Traitement audio sur ARM Cortex-M4 (Freescale)}
+
+\section{Langues / Informations complémentaires}
+
+\cvitemwithcomment{Anglais}{Niveau BAC+2}{TOEIC 2011 : 810 points ; anglais technique lu/écrit quotidiennement}
+
+\cvitem{Loisirs}{Escalade (passport blanc), Plongée sous-marine (Niveau 2 FFESSM)}
+
+\end{document}
+</code>
+        </pre>
+        <p xmlns:cc="http://creativecommons.org/ns#">This work is licensed under <a
+                href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank"
+                rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0<img
+                style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img
+                style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img
+                style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img
+                style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt=""></a></p>
+    </div>
+    <div class="column" id="cv-container">
+        <i id="loader" class="fa-3x fa-solid fa-circle-notch fa-spin"></i>
+        <a href="/static/CV_LEVIS_Florian_Developpeur.pdf" title="Cliquez pour télécharger mon CV">
+            <div data-src="cv" id="cv-viewer"></div>
+        </a>
+    </div>
+</div>
+</body>
+</html>

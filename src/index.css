@@ -1,0 +1,76 @@
+@import 'modern-normalize/modern-normalize.css';
+@import "@fortawesome/fontawesome-free/css/fontawesome.css";
+@import "@fortawesome/fontawesome-free/css/solid.css";
+
+body {
+    background-color: #24292e;
+    color: white;
+}
+
+pre {
+    margin: 0;
+    /*white-space: pre-line;*/
+    white-space: pre-wrap;
+}
+
+.row {
+    display: flex;
+    max-width: 100%;
+    align-items: stretch;
+}
+
+.column {
+    flex: 50%;
+    max-width: 50%;
+    position: relative;
+}
+
+code {
+    counter-reset: step;
+    counter-increment: step 0;
+    padding-right: 0.5rem;
+}
+
+code .line::before {
+    content: counter(step);
+    counter-increment: step;
+    width: 2rem;
+    margin-right: 1.5rem;
+    display: inline-block;
+    text-align: right;
+    color: rgba(115,138,148,.4)
+}
+
+.download {
+    color: white;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
+canvas {
+    margin: 0.5rem 0;
+}
+
+canvas#cv-p1 {
+    margin-top: 0;
+}
+
+#cv-container {
+    text-align: center;
+}
+
+#loader {
+    margin-top: 10rem;
+}
+
+@media only screen and (max-width: 1440px) {
+    .row {
+        flex-direction: column-reverse;
+    }
+
+    .column {
+        width: 100%;
+        max-width: 100%;
+    }
+}

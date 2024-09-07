@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "license": "CC-BY-NC-SA-4.0",
+  "scripts": {
+    "build": "npm run updatecv && npm run updatesite",
+    "pdflatex": "cd cv && pdflatex -synctex=1 -interaction=nonstopmode CV.tex",
+    "pdflatex-twice": "npm run pdflatex && npm run pdflatex",
+    "copytex": "node scripts/copytex.mjs",
+    "updatesite": "npx webpack --mode=production",
+    "updatecv": "npm run pdflatex-twice && npm run copytex && mkdir -p static/ && cp cv/CV.pdf static/CV_LEVIS_Florian_Developpeur.pdf"
+  },
+  "type": "module",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.6.0",
+    "modern-normalize": "^3.0.0",
+    "pdfjs-dist": "^4.5.136",
+    "shiki": "^1.14.1"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^12.0.2",
+    "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^7.0.0",
+    "html-webpack-plugin": "^5.6.0",
+    "mini-css-extract-plugin": "^2.9.1",
+    "style-loader": "^4.0.0",
+    "terser-webpack-plugin": "^5.3.10",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  }
+}
