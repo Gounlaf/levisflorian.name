@@ -11,6 +11,8 @@
 
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
+\usepackage{color}
+\usepackage{hyperref}
 
 % Only if the base font of the document is to be sans serif
 \renewcommand*\familydefault{\sfdefault}
@@ -48,17 +50,19 @@
 \familyname{Levis}
 \title{Développeur, avec un l et deux p}
 \address{}{95170 Deuil-la-Barre, France}
-\mobile{+33 6 84 94 25 85}
+\phone[mobile]{+33 6 84 94 25 85}
 \email{levis.florian@gmail.com}
+\homepage{levisflorian.name}
+\social[github]{Gounlaf}
+\social[linkedin]{gounlaf}
+
 \extrainfo{\theage{} ans, permis B, véhiculé\\mais en métro ou à pieds c'est mieux}
-\homepage{https://levisflorian.name}
-\social[github][https://github.com/Gounlaf]{github.com/Gounlaf}
-\social[linkedin][https://www.linkedin.com/in/gounlaf/]{linkedin.com/in/gounlaf}
 \photo[64pt]{photo.jpg}
 \quote{$\pi\ \%\ 1337\ =\ 42$}
 
 \begin{document}
-\maketitle
+
+\makecvtitle
 
 \section{Expérience professionnelle}
 
