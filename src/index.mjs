@@ -1,17 +1,17 @@
 import * as pdfjsLib from 'pdfjs-dist/webpack.mjs'
-import {createHighlighterCore} from 'shiki/core'
-import getWasm from 'shiki/wasm'
+import { createHighlighterCore } from '@shikijs/core'
+import { createJavaScriptRegexEngine } from '@shikijs/engine-javascript'
 
 import './index.css'
 
 const highlighter = await createHighlighterCore({
   themes: [
-    import('shiki/themes/github-dark.mjs')
+    import('@shikijs/themes/github-dark')
   ],
   langs: [
-    import('shiki/langs/latex.mjs'),
+    import('@shikijs/langs-precompiled/latex'),
   ],
-  loadWasm: getWasm
+  engine: createJavaScriptRegexEngine()
 })
 
 document.querySelectorAll('.language-latex').forEach(e => {
