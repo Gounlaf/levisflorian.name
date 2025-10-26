@@ -54,6 +54,10 @@ export default {
         {from: 'static', to: 'static'},
       ],
     }),
+    new webpack.EvalSourceMapDevToolPlugin({
+      exclude: /node_modules\/pdfjs-dist/,
+      columns: false,
+    }),
     new HtmlWebpackPlugin({
       title: 'Florian Levis - Curriculum Vitae',
       template: './src/index.html',
