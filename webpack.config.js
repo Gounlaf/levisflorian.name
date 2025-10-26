@@ -5,10 +5,12 @@ import {CleanWebpackPlugin} from 'clean-webpack-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
 import path from 'node:path'
+import webpack from 'webpack'
 
 const devMode = process.env.NODE_ENV !== 'production'
 const buildPath = path.resolve(import.meta.dirname, 'dist')
 
+console.log('devMode', devMode)
 const isProduction = process.argv[process.argv.indexOf('--mode') + 1] === 'production';
 
 export default {
@@ -24,6 +26,7 @@ export default {
   // This option controls if and how source maps are generated.
   // https://webpack.js.org/configuration/devtool/
   devtool: devMode ? 'eval-source-map' : false,
+  mode: devMode ? 'development' : 'production',
   // https://webpack.js.org/concepts/entry-points/#multi-page-application
   entry: {
     index: `${import.meta.dirname}/src/index.mjs`,

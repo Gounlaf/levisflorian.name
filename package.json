@@ -6,19 +6,19 @@
     "pdflatex": "cd cv && pdflatex -synctex=1 -interaction=nonstopmode CV.tex",
     "pdflatex-twice": "npm run pdflatex && npm run pdflatex",
     "copytex": "node scripts/copytex.mjs",
-    "updatesite": "npx webpack --mode=production",
+    "updatesite": "NODE_ENV=production npx webpack --mode=production",
     "updatecv": "npm run pdflatex-twice && npm run copytex && mkdir -p static/ && cp cv/CV.pdf static/CV_LEVIS_Florian_Developpeur.pdf"
   },
   "type": "module",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^7.0.1",
-    "@shikijs/core": "^3.12.2",
-    "@shikijs/engine-javascript": "^3.12.2",
-    "@shikijs/langs": "^3.12.2",
-    "@shikijs/langs-precompiled": "^3.12.2",
-    "@shikijs/themes": "^3.12.2",
+    "@fortawesome/fontawesome-free": "^7.1.0",
+    "@shikijs/core": "^3.14.0",
+    "@shikijs/engine-javascript": "^3.14.0",
+    "@shikijs/langs": "^3.14.0",
+    "@shikijs/langs-precompiled": "^3.14.0",
+    "@shikijs/themes": "^3.14.0",
     "modern-normalize": "^3.0.1",
-    "pdfjs-dist": "5.4.54"
+    "pdfjs-dist": "5.4.296"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
@@ -29,7 +29,7 @@
     "mini-css-extract-plugin": "^2.9.4",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.3.14",
-    "webpack": "^5.101.3",
+    "webpack": "^5.102.1",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2"
   }
