@@ -7,11 +7,8 @@ import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
 import path from 'node:path'
 import webpack from 'webpack'
 
-const devMode = process.env.NODE_ENV !== 'production'
+const isProduction = process.env.NODE_ENV === 'production'
 const buildPath = path.resolve(import.meta.dirname, 'dist')
-
-console.log('devMode', devMode)
-const isProduction = process.argv[process.argv.indexOf('--mode') + 1] === 'production';
 
 export default {
   devServer: {
@@ -23,10 +20,8 @@ export default {
       },
     },
   },
-  // This option controls if and how source maps are generated.
-  // https://webpack.js.org/configuration/devtool/
-  devtool: devMode ? 'eval-source-map' : false,
-  mode: devMode ? 'development' : 'production',
+  devtool: false,
+  mode: isProduction ? 'production' : 'development',
   // https://webpack.js.org/concepts/entry-points/#multi-page-application
   entry: {
     index: `${import.meta.dirname}/src/index.mjs`,
@@ -59,6 +54,7 @@ export default {
     }),
     new webpack.EvalSourceMapDevToolPlugin({
       exclude: /node_modules\/pdfjs-dist/,
+      module: !isProduction,
       columns: false,
     }),
     new HtmlWebpackPlugin({
@@ -69,8 +65,8 @@ export default {
       filename: 'index.html'
     }),
     new MiniCssExtractPlugin({
-      filename: devMode ? '[name].css' : '[name].[contenthash].css',
-      chunkFilename: devMode ? '[id].css' : '[id].[contenthash].css',
+      filename: isProduction ? '[name].[contenthash].css' : '[name].css',
+      chunkFilename: isProduction ? '[id].[contenthash].css' : '[id].css',
     }),
   ],
   // https://webpack.js.org/configuration/optimization/
@@ -79,6 +75,10 @@ export default {
     minimizer: [
       new TerserPlugin(),
       new CssMinimizerPlugin()
-    ]
+    ],
+    splitChunks: {
+      // include all types of chunks
+      chunks: 'all',
+    },
   }
 };
