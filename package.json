@@ -14,25 +14,25 @@
   "type": "module",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.1.0",
-    "@shikijs/core": "^3.14.0",
-    "@shikijs/engine-javascript": "^3.14.0",
-    "@shikijs/langs": "^3.14.0",
-    "@shikijs/langs-precompiled": "^3.14.0",
-    "@shikijs/themes": "^3.14.0",
+    "@shikijs/core": "^4.0.2",
+    "@shikijs/engine-javascript": "^4.0.2",
+    "@shikijs/langs": "^4.0.2",
+    "@shikijs/langs-precompiled": "^4.0.2",
+    "@shikijs/themes": "^4.0.2",
     "modern-normalize": "^3.0.1",
-    "pdfjs-dist": "5.4.530"
+    "pdfjs-dist": "^6.0.227"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "^13.0.1",
+    "copy-webpack-plugin": "^14.0.0",
     "css-loader": "^7.1.2",
-    "css-minimizer-webpack-plugin": "^7.0.2",
+    "css-minimizer-webpack-plugin": "^8.0.0",
     "html-webpack-plugin": "^5.6.4",
     "mini-css-extract-plugin": "^2.9.4",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.3.14",
     "webpack": "^5.102.1",
-    "webpack-cli": "^6.0.1",
+    "webpack-cli": "^7.0.0",
     "webpack-dev-server": "^5.2.2"
   }
 }

@@ -1,6 +1,6 @@
 import * as pdfjsLib from 'pdfjs-dist/webpack.mjs'
-import { createHighlighterCore } from '@shikijs/core'
-import { createJavaScriptRegexEngine } from '@shikijs/engine-javascript'
+import {createHighlighterCore} from '@shikijs/core'
+import {createJavaScriptRegexEngine} from '@shikijs/engine-javascript'
 
 import './index.css'
 
@@ -15,18 +15,16 @@ const highlighter = await createHighlighterCore({
 })
 
 document.querySelectorAll('.language-latex').forEach(e => {
-  const html = highlighter.codeToHtml(e.innerText, {
+  e.parentElement.outerHTML = highlighter.codeToHtml(e.innerText, {
     lang: 'latex',
     theme: 'github-dark'
   })
-
-  e.parentElement.outerHTML = html
 });
 
 (async function () {
   const cvViewer = document.getElementById('cv-viewer')
   const cvSource = cvViewer.closest('a')
-  if (!cvSource || !cvSource.hasAttribute('href')) {
+  if (!cvSource?.hasAttribute('href')) {
     return
   }
 
@@ -40,7 +38,9 @@ document.querySelectorAll('.language-latex').forEach(e => {
 
   const pdfPath = cvSource.getAttribute('href')
   // Load PDF
-  const loadingTask = pdfjsLib.getDocument(pdfPath)
+  const loadingTask = pdfjsLib.getDocument({
+    url: pdfPath
+  })
   const pdfDocument = await loadingTask.promise
 
   const numPages = pdfDocument.numPages
@@ -96,4 +96,4 @@ document.querySelectorAll('.language-latex').forEach(e => {
 
   // First rendering
   await renderAllPages()
-}());
+}())
